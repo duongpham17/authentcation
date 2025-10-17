@@ -1,0 +1,13 @@
+import express, {IRouter} from 'express';
+
+import { protect, persist, login, signup, code, email } from '../controllers/authentication';
+
+const router: IRouter = express.Router();
+
+router.get('/load', protect, persist);
+router.post('/login', login);
+router.post('/signup', signup);
+router.post('/code', code);
+router.get('/email/:token', email);
+
+export default router;
