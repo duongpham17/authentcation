@@ -1,9 +1,9 @@
-#Authentication
+# Authentication
 Built using React+Node+Mongodb+Redux
 
-#Config.env
+# Config.env
 Remeber to fill out the environment!
-
+```
 NODE_ENV=development
 EMAIL_ADDRESS=example@gmail.com
 EMAIL_PASSWORD=
@@ -12,3 +12,4 @@ DATABASE=mongodb+srv://<username>:<db_password>@cluster0...
 DATABASE_PASSWORD=Password
 JWT_SECRET=make-up-secret-phrase-as-long-as-you-want
 JWT_EXPIRES=365
+```
