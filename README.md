@@ -1,5 +1,5 @@
 # Authentication
-Built using React+Node+Mongodb+Redux
+Built using React + Node + Mongodb + Redux + Typescript
 
 # Config.env
 Remeber to fill out the environment!
