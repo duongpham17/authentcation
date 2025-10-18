@@ -4,7 +4,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Vat D D</h1>
+      <h1>Authentication</h1>
     </div>
   )
 }
