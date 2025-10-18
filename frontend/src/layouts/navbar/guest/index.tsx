@@ -8,6 +8,7 @@ const Guest = () => {
 
       <div className={style.left}>
         <Link to="/">VAT</Link>
+        <Link to="/protected"> | Protected Route</Link>
       </div>
 
       <div className={style.right}>

@@ -19,7 +19,7 @@ const Login = () => {
     <div className={styles.container}>
 
       <div className={styles.title}>
-        <h1>VAT Due Diligence</h1>
+        <h1>Authentication Example</h1>
         <p>Access your account to continue</p>
       </div>
 

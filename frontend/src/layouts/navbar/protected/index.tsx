@@ -13,7 +13,7 @@ const Protected = () => {
     <div className={style.container}>
       <div className={style.left}>
         <Link to="/">VAT</Link>
-        <Link to="/dashboard"> | Dashboard</Link>
+        <Link to="/protected"> | Protected Route</Link>
       </div>
 
       <div className={style.right}>

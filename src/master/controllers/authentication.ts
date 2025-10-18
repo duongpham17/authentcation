@@ -176,32 +176,36 @@ export const code = asyncBlock(async (req: Request, res: Response, next: NextFun
     });
 });
 
-export const email = asyncBlock(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.params.token;
+// export const email = asyncBlock(async (req: Request, res: Response, next: NextFunction) => {
+//     const token = req.params.token;
 
-    const [code, confirmation] = token.split("-");
+//     const [code, confirmation] = token.split("-");
 
-    let user = await User.findOne({confirmation}).select('+code');
+//     let user = await User.findOne({confirmation}).select('+code');
 
-    if(!user) return next(new appError("User does not exist, signup again.", 401));
+//     if(!user) return next(new appError("User does not exist, signup again.", 401));
     
-    const linkExpired = Date.now() > user.confirmation_expiration;
+//     const linkExpired = Date.now() > user.confirmation_expiration;
 
-    if(linkExpired) return next(new appError("This confirmation code no longer exist", 401));
+//     if(linkExpired) return next(new appError("This confirmation code no longer exist", 401));
 
-    const correctUser = !user || await user.correctPassword(code, user.code);
+//     const correctUser = !user || await user.correctPassword(code, user.code);
 
-    if (!correctUser) return next(new appError("User does not exist, signup again.", 401));
+//     if (!correctUser) return next(new appError("User does not exist, signup again.", 401));
 
-    user = await User.findOneAndUpdate({confirmation}, {$unset: {code: 1, confirmation: 1, verified: 1, link_expiration_time: 1}}, {new: true});
+//     user = await User.findOneAndUpdate({email}, {
+//         $unset: { code: 1, confirmation: 1, link_expiration_time: 1 },
+//         $set: { verified: true }, 
+//     }, 
+//     {new: true});
 
-    if(!user) return next(new appError("User does not exist, signup again.", 401));
+//     if(!user) return next(new appError("User does not exist, signup again.", 401));
 
-    const cookie = createSecureToken(user._id as string);
+//     const cookie = createSecureToken(user._id as string);
 
-    res.status(200).json({
-        status: "success",
-        data: user,
-        cookie
-    });
-});
+//     res.status(200).json({
+//         status: "success",
+//         data: user,
+//         cookie
+//     });
+// });

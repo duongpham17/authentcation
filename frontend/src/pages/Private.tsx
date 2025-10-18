@@ -1,36 +1,24 @@
-// import { useAppSelector } from '@redux/hooks/useRedux';
-// import Unknown from 'pages/unknown';
+import { useAppSelector } from '@redux/hooks/useRedux';
+import Unknown from 'pages/unknown';
 
-// interface Props {
-//     roles?: string[],
-//     component: React.FunctionComponent
-// }
+interface Props {
+    roles?: string[],
+    component: React.FunctionComponent
+}
 
-// const Private = ({component: Component, roles=["user", "admin"]}: Props) => {
+const Private = ({component: Component, roles=["user", "admin"]}: Props) => {
 
-//   const {isLoggedIn} = useAppSelector(state => state.authentication);
+  const {user} = useAppSelector(state => state.authentications);
 
-//   const {user} = useAppSelector(state => state.user);
+  const auth_good = user && roles.includes(user?.role || "user");
 
-//   const auth_good = isLoggedIn && roles.includes(user?.role || "user");
+  const auth_bad = !user || !roles.includes(user?.role || "user");
 
-//   const auth_bad = !isLoggedIn || !roles.includes(user?.role || "user");
-
-//   if (auth_good) return <Component/>
+  if (auth_good) return <Component/>
   
-//   if (auth_bad) return <Unknown />
+  if (auth_bad) return <Unknown />
   
-//   return <div className='loading' />
-// }
-
-// export default Private
-
-import React from 'react'
-
-const Private = () => {
-  return (
-    <div>Private</div>
-  )
+  return <div className='loading' />
 }
 
 export default Private
