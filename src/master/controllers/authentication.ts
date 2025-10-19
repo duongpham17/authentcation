@@ -73,12 +73,7 @@ export const login = asyncBlock(async(req: Request, res: Response, next: NextFun
 
     let user = await User.findOne({email});
 
-    if(!user) {
-        return res.status(200).json({
-            status: "success",
-            message: "failed"
-        })
-    };
+    if(!user) return next(new appError("failed", 400));
 
     const host = req.headers.referer;
     
@@ -110,12 +105,7 @@ export const signup = asyncBlock(async(req: Request, res: Response, next: NextFu
 
     let user = await User.findOne({email});
 
-    if(user) {
-        return res.status(200).json({
-            status: "success",
-            message: "exist"
-        })
-    };
+    if(user) return next(new appError("exist", 401));
 
     const host = req.headers.referer;
     
@@ -128,6 +118,7 @@ export const signup = asyncBlock(async(req: Request, res: Response, next: NextFu
 
         const {code, hashToken} = await user.createVerifyToken();
 
+        // in case you want to send a magic 
         const confirmURL = `${host_url}/confirm/${`${code}-${hashToken}`}`;
     
         await EMAIL_SIGNUP({

@@ -54,17 +54,15 @@ const Signin = () => {
             {errors.code && <Text message="Incorrect code, try again" color="red" />}
             <br/>
 
-            <Button type="submit" label1={<span>&#x2192;</span>} loading={loading} color="main" />
+            <Button type="submit" label1={"Confirm"} loading={loading} color="main" />
           </form>
           :
           <form onSubmit={onSubmit}>
             <Input label1="Email address" error={validationErrors.email} placeholder="..." name="email" value={values.email} onChange={onChange} />
             
-            <br/>
-            {status.login && <Text message={"Email does not exist, please sign up."} color='red'/>}
-            <br/>
-            
-            <Button type="submit" label1={<span>&#x2192;</span>}loading={loading} color="main" />
+            {errors.login && <><br/><Text message={"Email does not exist, please sign up."} color='red'/><br/></>}
+                     
+            <Button type="submit" label1={"Sign in"}loading={loading} color="main" />
           </form>
         }
     </div>

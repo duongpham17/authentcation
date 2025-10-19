@@ -8,13 +8,13 @@ const login = (email: string) => async (dispatch: Dispatch<ACTIONS>) => {
         const res = await api.post(`/authentications/login`, {email});
         dispatch({
             type: TYPES.AUTHENTICATIONS_LOGIN,
-            payload: {login: res.data.message as "failed" | "sent"}
+            payload: {login: res.data.message as "sent"}
         });
     } catch(error:any){
         console.log(error.response)
         dispatch({
             type: TYPES.AUTHENTICATIONS_RESPONSE_ERROR,
-            payload: {login: error.response.data.message as string}
+            payload: {login: error.response.data.message as "failed"}
         });
     }
 };
@@ -24,13 +24,13 @@ const signup = (data: IAuthenticationsSignup) => async (dispatch: Dispatch<ACTIO
         const res = await api.post(`/authentications/signup`, data);
         dispatch({
             type: TYPES.AUTHENTICATIONS_SIGNUP,
-            payload: {signup: res.data.message as "exist" || "sent"}
+            payload: {signup: res.data.message as "sent"}
         });
     } catch(error:any){
         console.log(error.response)
         dispatch({
             type: TYPES.AUTHENTICATIONS_RESPONSE_ERROR,
-            payload: {signup: error.response.data.message as string}
+            payload: {signup: error.response.data.message as "exist"}
         });
     }
 };

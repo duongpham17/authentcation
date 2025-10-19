@@ -43,7 +43,7 @@ const Signup = () => {
 
     const {status, errors} = useAppSelector(state => state.authentications);
 
-    const initalState = { email: "", code: "", name: "", title: "portfolio manager"};
+    const initalState = { email: "", code: "", name: "", title: "Example 1"};
 
     const {values, onChange, onSubmit, loading, validationErrors} = useForm(initalState, callback, validation);
 
@@ -58,28 +58,28 @@ const Signup = () => {
           status.signup === "sent"
           ?
           <form onSubmit={onSubmit}>
-              <p>Check your email for the code</p>
+            <p>Check your email for the code</p>
 
-              <Input label1="" placeholder="Enter code here" name="code" value={values.code} onChange={onChange} />
-              <br/>
-              {errors.code && <Text message="Incorrect code, try again." color='red' />}
-              <br/>
+            <Input label1="" placeholder="Enter code here" name="code" value={values.code} onChange={onChange} />
 
-              <Button type="submit" label1={<span>&#x2192;</span>} loading={loading} color="main" />
+            {errors.code && <Text message="Incorrect code, try again" color="red" />}
+            <br/>
+
+            <Button type="submit" label1={"Confirm"} loading={loading} color="main" />
           </form>
           :
           <form onSubmit={onSubmit}>
-              <Input label1="Full Name" error={validationErrors.name} placeholder="Enter your full name" name="name" value={values.name} onChange={onChange} />
+            <Input label1="Full Name" error={validationErrors.name} placeholder="Enter your full name" name="name" value={values.name} onChange={onChange} />
 
-              <Input label1="Email address" error={validationErrors.email} placeholder="Enter your email address" name="email" value={values.email} onChange={onChange} />
+            <Input label1="Email address" error={validationErrors.email} placeholder="Enter your email address" name="email" value={values.email} onChange={onChange} />
 
-              <Option label1="Role" options={["Portfolio Company", "Fund Manager", "Advisor"]} />
+            <Option label1="Role" options={["Example 1", "Example 2", "Example 3"]} />
 
-              <br/>
-              {status.signup && <Text message="Email already exist, please login instead" color='red' />}
-              <br/>
+            <br/>
+            {errors.signup && <Text message="Email already exist, please login instead" color='red' />}
+            <br/>
 
-              <Button type="submit" label1={<span>&#x2192;</span>}loading={loading} color="main" />
+            <Button type="submit" label1={"Create account"}loading={loading} color="main" />
           </form>
       }
     </div>

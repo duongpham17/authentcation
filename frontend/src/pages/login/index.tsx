@@ -3,13 +3,21 @@ import { useState, useEffect } from 'react';
 
 import Signin from './Signin';
 import Signup from './Signup';
-import { useAppSelector } from '@redux/hooks/useRedux';
+import { useAppSelector, useAppDispatch } from '@redux/hooks/useRedux';
+import Authentication from '@redux/actions/authentications';
 
 const Login = () => {
+
+  const dispatch = useAppDispatch();
 
   const [navbar, setNavbar] = useState("signin");
 
   const {user} = useAppSelector(state => state.authentications);
+
+  const onNavbar = (name: string ) => {
+    dispatch(Authentication.state_clear("errors", {}));
+    setNavbar(name);
+  };
 
   useEffect(() => {
     if(user?._id) return window.location.replace("/");
@@ -30,8 +38,8 @@ const Login = () => {
         </div>
 
         <div className={styles.navbar}>
-          <button onClick={() => setNavbar("signin")} className={navbar==="signin"?styles.selected:""}>Sign In</button>
-          <button onClick={() => setNavbar("signup")} className={navbar==="signup"?styles.selected:""}>Sign Up</button>
+          <button onClick={() => onNavbar("signin")} className={navbar==="signin"?styles.selected:""}>Sign In</button>
+          <button onClick={() => onNavbar("signup")} className={navbar==="signup"?styles.selected:""}>Sign Up</button>
         </div>
 
         {navbar === "signin" && <Signin />}
