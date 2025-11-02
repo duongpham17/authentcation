@@ -2,7 +2,7 @@
 Built using React + Node + Mongodb + Redux + Typescript
 
 # Config.env
-Remeber to fill out the environment!
+Fill out the environment!
 ```
 NODE_ENV=development
 EMAIL_ADDRESS=example@gmail.com
